@@ -1,3 +1,39 @@
+
+<?php
+if(isset($_POST['login'])){
+    require_once('extra/connection.php');
+
+    $user = htmlspecialchars($_POST['email']);
+    $pass = htmlspecialchars($_POST['password']);
+
+    $user = stripcslashes($user);
+    $pass = stripcslashes($pass);
+
+    $user = mysqli_real_escape_string($con, $user);
+    $pass = mysqli_real_escape_string($con, $pass);
+    $pass = md5($pass);
+
+    $strsql = " 
+                SELECT * FROM users 
+                WHERE email = '$user'
+                AND password = '$pass'
+            ";
+
+    if($MyLogin = mysqli_query($con, $strsql)){
+        if (mysqli_num_rows($MyLogin)>0) {
+           header('Location:extra/Dashboard.php');
+           mysqli_free_result($MyLogin);
+        }
+        else
+            echo "invalid user/pass";
+    }
+    else
+        echo "ERROR : Could not execute your require";
+
+    require_once('extra/close-connection.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
