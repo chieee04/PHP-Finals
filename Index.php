@@ -1,6 +1,6 @@
 <?php
 require_once('Functions.php');
-
+guard();
 if (isset($_POST['login'])) {
 
     require_once('extra/connection.php');

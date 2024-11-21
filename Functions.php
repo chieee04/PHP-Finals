@@ -53,18 +53,32 @@ function authenticateUser($email, $password, $con) {
     }
 }
 
-// Function to guard pages that should not be accessed by logged-in users
-function guard() {
-    // Start the session if not already started
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-
-    // Check if the user is already logged in
-    if (isset($_SESSION['email'])) {
-        // If the user is logged in, redirect to the Dashboard
-        header('Location: admin/Dashboard.php');
-        exit;
+function dashboardguard(){
+    $loginPage = '../index.php';
+    if(!isset($_SESSION['email'])){
+        header("Location: $loginPage");
     }
 }
+// Function to guard pages that should not be accessed by logged-in users
+function guard(){   
+    $dashboard = 'admin/dashboard.php';
+    if(isset($_SESSION['email'])){
+        header("Location: $dashboard");
+    } 
+}
+
+
+function logout($indexPage) {
+    // Unset the 'email' session variable
+    unset($_SESSION['email']);
+
+    // Destroy the session
+    session_destroy();
+
+    // Redirect to the login page (index.php)
+    header("Location: $indexPage");
+    exit;
+}
 ?>
+
+
