@@ -1,9 +1,9 @@
 <?php
 require_once('Functions.php');
-
+guard();
 if (isset($_POST['login'])) {
 
-    require_once('extra/connection.php');
+    openCon();
 
     $email = htmlspecialchars($_POST['email']);
     $password = htmlspecialchars($_POST['password']);
@@ -21,11 +21,10 @@ if (isset($_POST['login'])) {
         $error = authenticateUser($email, $password, $con);
     }
     else
-        $email = '';  // Reset email
+        $email = '';
         $password = ''; 
 
-
-    require_once('extra/close-connection.php');
+    CloseCon();
 }
 ?>
 
