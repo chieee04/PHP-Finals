@@ -3,7 +3,7 @@ require_once('Functions.php');
 guard();
 if (isset($_POST['login'])) {
 
-    openCon();
+    $con = openCon();
 
     $email = htmlspecialchars($_POST['email']);
     $password = htmlspecialchars($_POST['password']);
@@ -15,7 +15,7 @@ if (isset($_POST['login'])) {
     $passwordError = validatePassword($password);
 
     $error = '';
-
+    $con = mysqli_connect(DB_SERVER , DB_USERNAME , DB_PASSWORD , DB_NAME);
     if (empty($emailError) && empty($passwordError)) {
         // If no validation errors, attempt authentication
         $error = authenticateUser($email, $password, $con);
@@ -24,7 +24,7 @@ if (isset($_POST['login'])) {
         $email = '';
         $password = ''; 
 
-    CloseCon();
+    CloseCon($con);
 }
 ?>
 
