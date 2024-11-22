@@ -7,18 +7,18 @@
         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="/finalss/PHP-Finals/admin/Dashboard.php">
+                    <a class="nav-link d-flex align-items-center gap-2" <?php echo ($_SESSION['CURR_PAGE'] == 'dashboard' ? 'active' : ''); ?> href="/finalss/PHP-Finals/admin/Dashboard.php">
                         <i class="fa-solid fa-gauge fa-fw me-2"></i>
                         Dashboard
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="/finalss/PHP-Finals/admin/subject/add.php">
+                    <a class="nav-link d-flex align-items-center gap-2" <?php echo ($_SESSION['CURR_PAGE'] == 'subject' ? 'active' : ''); ?> href="/finalss/PHP-Finals/admin/subject/add.php">
                         Subjects
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="/finalss/PHP-Finals/admin/students/register.php">
+                    <a class="nav-link d-flex align-items-center gap-2" <?php echo ($_SESSION['CURR_PAGE'] == 'student' ? 'active' : ''); ?> href="/finalss/PHP-Finals/admin/students/register.php">
                         <i class="fa-solid fa-user fa-fw me-2"></i>
                         Students
                     </a>

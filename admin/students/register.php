@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    $_SESSION['CURR_PAGE'] = 'student'
+  ?>
 <?php 
 include '../../functions.php'; 
 dashboardguard();
@@ -54,13 +58,13 @@ require '../partials/side-bar.php';
                     <td></td>
                     <td>
                         <!-- Edit Button (Green) -->
-                        <a href="" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="edit.php?k=" class="btn btn-primary btn-sm">Edit</a>
 
                         <!-- Delete Button (Red) -->
-                        <a href="" class="btn btn-danger btn-sm">Delete</a>
+                        <a href="delete.php?k=" class="btn btn-danger btn-sm">Delete</a>
                         
                         <!-- Attach Subject Button (Yellow) -->
-                        <a href="" class="btn btn-warning btn-sm">Attach Subject</a>
+                        <a href="attach-subject.php?k=" class="btn btn-warning btn-sm">Attach Subject</a>
                     </td>
                 </tr>
                 <tr>

@@ -48,18 +48,15 @@ require '../partials/side-bar.php';
                 <tr>
                     <td>
                         <!-- Detach Button (Red) -->
-                        <a href="" class="btn btn-danger btn-sm">Detach Subject</a>
+                        <a href="detach-subject.php?k=" class="btn btn-danger btn-sm">Detach Subject</a>
 
                         <!-- Assign Grade Button (Green) -->
-                        <a href="" class="btn btn-success btn-sm">Assign Grade</a>
+                        <a href="assign-grade.php?k=" class="btn btn-success btn-sm">Assign Grade</a>
                     </td>
                 </tr>
-                <?php endforeach; ?>
-                <?php else: ?>
                     <tr>
                         <td colspan="4" class="text-center">No subjects found.</td>
                     </tr>
-                <?php endif; ?>
             </tbody>
         </table>
     </div>

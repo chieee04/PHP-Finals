@@ -23,30 +23,20 @@ function CloseCon(){
     mysqli_close($con);
 }
 
-function getRec($con,$strSql){
-    $arrRec = [];
-    $i = 0;
-    if ($rs = mysqli_query($con,$strSql)) {
-        if (mysqli_num_rows($rs)== 1) {
-            $rec = mysqli_fetch_array($rs);
-            foreach ($rec as $key=> $value) {
-                $arrRec[$key] = $value;
-            }
-        }
-        elseif(mysqli_num_rows($rs)> 1){
-            while ($rec = mysqli_fetch_array($rs)) {
-               foreach ($rec as $key=> $value) {
-                $arrRec[$i][$key] = $value;
-                }
-                $i++;
-            }
-        }
-        mysqli_free_result($rs);
+function getRec($con, $strSql) {
+    // Execute the query
+    $result = mysqli_query($con, $strSql);
+
+    // Check if result is valid
+    if ($result) {
+        // Fetch all rows as an associative array
+        return mysqli_fetch_all($result, MYSQLI_ASSOC);  // This will return an array of associative arrays
     }
-    else
-        die("ERROR: Could not connect");
-    return $arrRec;
+    
+    // In case of an error, return an empty array or handle as needed
+    return [];
 }
+
 
 function exeuteInsertLastQuery($con,$strSql){
     if (mysqli_query($con,$strSql)) {
@@ -58,14 +48,6 @@ function exeuteInsertLastQuery($con,$strSql){
 function sanitize($con,$input){
     return mysql_real_escape_string($con, stripcslashes(htmlspecialchars($input)));
 }
-
-
-
-
-
-
-
-
 
 
 // Function to validate email
@@ -124,12 +106,11 @@ function dashboardguard(){
 }
 // Function to guard pages that should not be accessed by logged-in users
 function guard(){   
-    $dashboard = 'admin/dashboard.php';
+    $dashboard = 'admin/Dashboard.php';
     if(isset($_SESSION['email'])){
         header("Location: $dashboard");
     } 
 }
-
 
 function logout($indexPage) {
     // Unset the 'email' session variable
@@ -142,6 +123,5 @@ function logout($indexPage) {
     header("Location: $indexPage");
     exit;
 }
+
 ?>
-
-
