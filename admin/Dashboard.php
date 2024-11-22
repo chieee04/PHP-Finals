@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    $_SESSION['CURR_PAGE'] = 'dashboard'
+  ?>
 <?php 
 require '../functions.php';
 $logoutPage = 'logout.php';
